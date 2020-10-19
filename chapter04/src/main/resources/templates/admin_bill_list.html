@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<body>
+<div class="menu">
+	<form method="post" th:action="@{/Acc/getAcc}">
+		商品名称：<input type="text" name="gName" th:value="${gName}" class="input-text" />&nbsp;&nbsp;&nbsp;&nbsp;
+		是否付款：<select name="ispay">
+			<option value="">请选择</option>
+			<option th:value="${1}">已付款</option>
+			<option th:value="${2}">未付款</option>
+		</select>&nbsp;&nbsp;&nbsp;&nbsp;
+		<input type="submit" name="submit" value="组合查询" class="button" />
+	</form>
+</div>
+<div class="main">
+	<div class="optitle clearfix">
+		<em><a th:href="@{/toindex/to_modify}" class="input-button">添加数据</a></em>
+		<div class="title">账单管理&gt;&gt;</div>
+	</div>
+	<div class="content">
+		<table class="list">
+			<tr>
+				<td>账单编号</td>
+				<td>商品名称</td>
+				<td>商品描述</td>
+				<td>账单时间</td>
+				<td>是否付款</td>
+				<td>交易金额</td>
+				<td>商品单位</td>
+				<td>账单数量</td>
+			</tr>
+
+			<tr th:each="acclist:${acclist}">
+				<td th:text="${acclist.aId}"></td>
+				<td><a th:href="@{/Acc/getAccinfo(aId=${acclist.aId})}" th:text="${acclist.gName}"></a></td>
+				<td th:text="${#dates.format(acclist.createtime,'yyyy-MM-dd')}"></td>
+				<td th:text="${acclist.pId}"></td>
+				<td th:text="${acclist.ispay == 2?'未付款':'已付款'}"></td>
+				<td th:text="${acclist.money}"></td>
+				<td th:text="${acclist.unit}"></td>
+				<td th:text="${acclist.num}"></td>
+			</tr>
+		</table>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>超市账单管理系统</title>
+	<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+</head>
+<frameset rows="100,*" cols="*" frameborder="no" border="0" framespacing="0"/>
+	<frame th:src="@{/toindex/top}" name="topFrame" scrolling="No" noresize="noresize" id="topFrame" />
+	<frameset cols="200,*" frameborder="no" border="0" framespacing="0" />
+		<frame th:src="@{/toindex/left}" name="leftFrame" scrolling="No" noresize="noresize" id="leftFrame" />
+		<frame th:src="@{/toindex/list}" name="mainFrame" id="mainFrame" />
+	</frameset>
+</frameset>
+<frameset></frameset>
+<noframes>
+	<body>
+	</body></noframes>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+<script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/Accdel.js}"></script>
+</head>
+<body>
+<div class="main">
+	<div class="optitle clearfix">
+		<em><input type="button" name="button" value="添加数据" class="input-button" onclick="location.href='modify.html'" /></em>
+		<div class="title">账单管理&gt;&gt;</div>
+	</div>
+	<form method="posts" th:action="@{/Acc/Accupdate}">
+		<input type="hidden" name="aId" th:value="${acc.aId}">
+		<div class="content">
+			<table class="box">
+				<tr>
+					<td class="field">账单编号：</td>
+					<td><input type="text" name="aId" class="text" th:value="${acc.aId}"/></td>
+				</tr>
+				<tr>
+					<td class="field">商品名称：</td>
+					<td><input type="text" name="gName" class="text" th:value="${acc.gName}"/></td>
+				</tr>
+				<tr>
+					<td class="field">商品描述：</td>
+					<td>
+						<input type="text" name="gInfo" th:value="${acc.gInfo}">
+					</td>
+				</tr>
+				<tr>
+					<td class="field">账单时间：</td>
+					<td><input type="text" name="createtime" class="text" th:value="${#dates.format(acc.createtime,'yyyy-MM-dd')}"/></td>
+				</tr>
+				<tr>
+					<td class="field">所属供应商：</td>
+					<td>
+						<select name="pId">
+							<option>选择</option>
+							<option th:value="${acc.pId}" th:text="${pro.pName}" th:each="pro:${pro}"></option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="field">是否付款：</td>
+					<td>
+						<select name="ispay">
+							<option th:value="${1}">是</option>
+							<option th:value="${2}">否</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td class="field">交易金额：</td>
+					<td><input type="text" name="money" class="text" th:value="${acc.money}"/></td>
+				</tr>
+				<tr>
+					<td class="field">商品单位：</td>
+					<td><input type="text" name="unit" class="text" th:value="${acc.unit}"/></td>
+				</tr>
+				<tr>
+					<td class="field">商品数量：</td>
+					<td><input type="text" name="num" class="text" th:value="${acc.num}"/></td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="buttons">
+			<input type="submit" name="submit" value="修改" class="input-button" />
+			<input type="hidden" th:value="${acc.aId}" id="aid2">
+			<input type="button" name="button" id="aid" value="删除" class="input-button"/>
+			<input type="button" name="button" value="返回" class="input-button" onclick="history.back();" />
+		</div>
+	</form>
+</div>
+</body>
+</html>

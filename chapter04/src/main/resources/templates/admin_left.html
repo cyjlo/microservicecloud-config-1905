@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/ex.js}"></script>
+</head>
+<body class="frame-bd">
+<ul class="left-menu">
+	<li><a th:href="@{/Acc/getAcc}" target="mainFrame"><img th:src="@{/images/btn_bill.gif}" /></a></li>
+	<li><a th:href="@{/Pro/getPro}" target="mainFrame"><img th:src="@{/images/btn_suppliers.gif}" /></a></li>
+	<li><a th:href="@{/user/getuserlist}" target="mainFrame"><img th:src="@{/images/btn_users.gif}" /></a></li>
+	<li><a href="#" id="ex"><img th:src="@{/images/btn_exit.gif}" /></a></li>
+</ul>
+</body>
+</html>

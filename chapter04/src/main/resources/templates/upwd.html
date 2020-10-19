@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+<script type="text/javascript">
+function checkit()
+{
+	//判断是否是数字的正则表达式
+	return true;
+}
+</script>
+</head>
+<body>
+<div class="main">
+	<div class="optitle clearfix">
+		<div class="title">用户管理&gt;&gt;</div>
+	</div>
+	<form id="form1" name="form1" method="post" th:action="@{/user/updatpwd}" onsubmit="return checkit();">
+           <input type="hidden" name="uId" th:value="${userinfo.uId}">
+		<div class="content">
+			<table class="box"><font color="red"></font>
+			<tr>
+					<td class="field">旧的密码：</td>
+					<td><input type="text" id="textfield" class="text"/> <font color="red">*</font></td>
+			</tr>
+			<tr>
+					<td class="field">新的密码：</td>
+					<td><input type="text" name="password" class="text" id="textfield2"/> <font color="red">*</font></td>
+			</tr>
+
+				<tr>
+					<td class="field">确认密码：</td>
+					<td><input type="text" class="text" id="textfield2"/> <font color="red">*</font></td>
+				</tr>
+
+			</table>
+		</div>
+		<div class="buttons">
+			<input type="submit" name="button" id="button" value="修改密码" class="input-button"/>
+			<input type="button" name="button" id="button" onclick="window.location='user.do';" value="返回" class="input-button"/>
+		</div>
+
+	</form>
+</div>
+</body>
+</html>

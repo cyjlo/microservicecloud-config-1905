@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}" />
+<script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/Prodel.js}"></script>
+</head>
+<body>
+<div class="main">
+	<div class="optitle clearfix">
+		<div class="title">供应商管理&gt;&gt;</div>
+	</div>
+	<form id="form1" name="form1" method="post" th:action="@{/Pro/Proupdate}" onsubmit="return checkit();">
+		<div class="content">
+		<font color="red"></font>
+         <input name="pId" th:value="${pro.pId}" type="hidden">
+			<table class="box">
+
+			<tbody><tr>
+					<td class="field">供应商编号：</td>
+					<td><input name="pId" th:value="${pro.pId}" id="textfield" class="text" type="text"> <font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="field">供应商名称：</td>
+					<td><input name="pName" th:value="${pro.pName}" id="textfield2" class="text" type="text"> <font color="red">*</font></td>
+
+				</tr>
+			<tr>
+					<td class="field">供应商描述：</td>
+					<td><input name="pInfo" th:value="${pro.pInfo}" id="textfield2"  class="text" type="text">
+			</tr>
+				<tr>
+					<td class="field">供应商联系：</td>
+
+					<td><input name="linkman" th:value="${pro.linkman}" id="textfield2"  class="text" type="text"></td>
+				</tr>
+				<tr>
+					<td class="field">供应商电话：</td>
+					<td><input name="pPhone" th:value="${pro.pPhone}" id="textfield2"  class="text" type="text"></td>
+				</tr>
+				<tr>
+					<td class="field">供应商传真：</td>
+
+					<td><input name="pFax" th:value="${pro.pFax}" id="textfield2"  class="text" type="text"></td>
+				</tr>
+				<tr>
+					<td class="field">供应商地址：</td>
+					<td><input name="pAddress" th:value="${pro.pAddress}" id="textfield2" class="text" type="text"></td>
+				</tr>
+			</tbody></table>
+		</div>
+
+		<div class="buttons">
+			<input name="button" id="button" value="修改" class="input-button" type="submit">
+			<input type="hidden" th:value="${pro.pId}" id="pid2">
+			<input type="button" name="button" id="pid" value="删除" class="input-button"/>
+			<input name="button" id="button" onclick="window.location='provider.do';" value="返回" class="input-button" type="button"> 
+		</div>
+	</form>
+</div>
+</body>
+</html>

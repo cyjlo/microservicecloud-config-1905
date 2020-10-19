@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+<script type="text/javascript">
+function doit(flag,id)
+{
+	if(flag=="del")
+	{
+		if(confirm("确认删除吗？")!=true)
+			return;
+	}
+	window.location = "provider.do?id="+id+"&flag="+flag;
+}
+</script>
+</head>
+<body>
+<div class="menu">
+
+<table>
+<tbody><tr><td>
+    <form method="post" th:action="@{/Pro/getPro}">
+<input name="flag" value="search" type="hidden">
+供应商名称：<input name="pName" th:value="${pName}" class="input-text" type="text"> &nbsp;&nbsp;&nbsp;&nbsp;
+ 供应商描述：<input name="pInfo" th:value="${pInfo}" class="input-text" type="text">&nbsp;&nbsp;&nbsp;&nbsp;<input value="组 合 查 询" type="submit">
+</form></td></tr>
+</tbody></table>
+</div>
+<div class="main">
+<div class="optitle clearfix">
+<em><a th:href="@{/toindex/to_Addpro}" class="input-button">添加数据</a></em>
+		<div class="title">供应商管理&gt;&gt;</div>
+	</div>
+
+	<div class="content">
+<table class="list">
+  <tbody>
+  <tr>
+    <td width="70" height="29"><div class="STYLE1" align="center">编号</div></td>
+    <td width="80"><div class="STYLE1" align="center">供应商名称</div></td>
+    <td width="100"><div class="STYLE1" align="center">供应商描述</div></td>
+    <td width="100"><div class="STYLE1" align="center">联系人</div></td>
+    <td width="100"><div class="STYLE1" align="center">电话</div></td>
+    <td width="100"><div class="STYLE1" align="center">地址</div></td>
+  </tr>
+
+  <tr th:each="prolist:${prolist}">
+      <td height="23"><span class="STYLE1" th:text="${prolist.pId}"></span></td><!--onclick="doit('mod',1)"-->
+      <td><span class="STYLE1"><a th:href="@{/Pro/getProinfo(pId=${prolist.pId})}" th:text="${prolist.pName}"></a></span></td>
+      <td><span class="STYLE1" th:text="${prolist.pInfo}"></span></td>
+      <td><span class="STYLE1" th:text="${prolist.linkman}"></span></td>
+      <td><span class="STYLE1" th:text="${prolist.pPhone}"></span></td>
+      <td><span class="STYLE1" th:text="${prolist.pAddress}"></span></td>
+  </tr>
+  
+</tbody></table>
+	</div>
+</div>
+</body></html>

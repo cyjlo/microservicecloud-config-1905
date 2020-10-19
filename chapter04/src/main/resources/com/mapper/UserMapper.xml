@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hc.chapter04.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.hc.chapter04.pojo.User">
+    <id column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
+    <result column="age" jdbcType="INTEGER" property="age" />
+    <result column="phone" jdbcType="DECIMAL" property="phone" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="role" jdbcType="INTEGER" property="role" />
+  </resultMap>
+
+  <select id="login" resultMap="BaseResultMap">
+    SELECT * FROM sm_user WHERE username=#{username} AND PASSWORD=#{password}
+  </select>
+
+  <select id="getUserlist" resultMap="BaseResultMap" resultType="map">
+    SELECT * FROM sm_user
+    <where>
+      <if test="username!=null and username!=''">
+        and username LIKE "%"#{username}"%"
+      </if>
+    </where>
+  </select>
+
+  <insert id="Add" parameterType="com.hc.chapter04.pojo.User">
+     INSERT INTO sm_user VALUES(#{uId},#{username},#{password},#{sex},#{age},#{phone},#{address},#{role})
+  </insert>
+
+  <select id="getinfo" resultMap="BaseResultMap" resultType="Integer">
+    SELECT * FROM sm_user WHERE u_id=#{uId}
+  </select>
+
+  <update id="updateuser" parameterType="com.hc.chapter04.pojo.User">
+  update sm_user
+  <set>
+    <if test="uId != null">
+      u_id = #{uId},
+    </if>
+    <if test="username != null">
+      username = #{username},
+    </if>
+    <if test="sex != null">
+      sex = #{sex},
+    </if>
+    <if test="age != null">
+      age = #{age},
+    </if>
+    <if test="phone != null">
+      phone = #{phone},
+    </if>
+    <if test="address != null">
+      address = #{address}
+    </if>
+  </set>
+  where u_id = #{uId}
+</update>
+
+  <update id="updatepwd" parameterType="com.hc.chapter04.pojo.User">
+    UPDATE sm_user SET PASSWORD=#{password} WHERE u_id=#{uId}
+  </update>
+
+  <delete id="del" parameterType="Integer">
+    delete from sm_user where u_id=#{uId}
+  </delete>
+
+</mapper>

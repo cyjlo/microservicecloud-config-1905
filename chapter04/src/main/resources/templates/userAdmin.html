@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insert title here</title>
+<script type="text/javascript" th:src="@{/js/jquery-1.8.3.js}" ></script>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+<script type="text/javascript">
+function doit(flag,id)
+{
+	if(flag=="del")
+	{
+		if(confirm("确认删除吗？")!=true)
+			return;
+	}
+}
+</script>
+</head><body>
+
+
+
+
+<div class="menu">
+
+<table>
+<tbody><tr><td>
+  <form method="post" th:action="@{/user/getuserlist}">
+<input name="flag" value="search" class="input-text" type="hidden">
+用户名称：<input name="username" th:value="${username}" class="input-text" type="text">&nbsp;&nbsp;&nbsp;&nbsp;
+  <input value="查 询" type="submit">
+</form>
+</td>
+</tr>
+</tbody></table>
+</div>
+<div class="main">
+
+<div class="optitle clearfix">
+<em>
+  <!--<input value="添加数据" class="input-button"  type="button">-->
+  <a th:href="@{/toindex/to_userAdd}" class="input-button">添加数据</a>
+</em>
+		<div class="title">用户管理&gt;&gt;</div>
+	</div>
+	<div class="content">
+<table class="list">
+  <tbody>
+
+  <tr>
+    <td width="70" height="29">
+      <div class="STYLE1" align="center">编号</div>
+    </td>
+    <td width="80"><div class="STYLE1" align="center">用户名称</div></td>
+    <td width="100"><div class="STYLE1" align="center">性别</div></td>
+    <td width="100"><div class="STYLE1" align="center">年龄</div></td>
+    <td width="150"><div class="STYLE1" align="center">电话 </div></td>
+    <td width="150"><div class="STYLE1" align="center">地址 </div></td>
+    <td width="150"><div class="STYLE1" align="center">权限 </div></td>
+  </tr>
+  
+  <tr th:each="userlist:${userlist}">
+
+    <td height="23"><span class="STYLE1" th:text="${userlist.uId}"></span></td><!--onclick="doit('mod',1)"-->
+    <td><span class="STYLE1"><a th:href="@{/user/getuserinfo(uId=${userlist.uId})}" th:text="${userlist.username}"></a></span></td>
+    <td><span class="STYLE1" th:text="${userlist.sex == 0?'女':'男'}"></span></td>
+    <td><span class="STYLE1" th:text="${userlist.age}"></span></td>
+    <td><span class="STYLE1" th:text="${userlist.phone}"></span></td>
+    <td><span class="STYLE1" th:text="${userlist.address}"></span></td>
+    <td><span class="STYLE1" th:text="${userlist.role == 0?'普通用户':'经理'}"></span></td>
+
+
+
+  </tr>
+</tbody></table>
+</div>
+</div>
+</body></html>

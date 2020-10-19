@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<!--解决变量变红，加入此注释-->
+<!--suppress ThymeleafVariablesResolveInspection -->
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Insert title here</title>
+<link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+<script type="text/javascript" th:src="@{/js/jquery.min.js}" ></script>
+<script type="text/javascript" th:src="@{/js/layer/layer.js}"></script>
+<script type="text/javascript" th:src="@{/js/del.js}"></script>
+<script type="text/javascript">
+function checkit()
+{
+	//判断是否是数字的正则表达式
+	return true;
+}
+</script>
+</head>
+<body>
+<div class="main">
+	<div class="optitle clearfix">
+		<div class="title">用户管理&gt;&gt</div>
+	</div>
+	<form id="form1" name="form1" method="post" th:action="@{/user/updateuser}" onsubmit="return checkit();">
+         <input type="hidden" name="uId" th:value="${userinfo.uId}">
+		<div class="content">
+			<table class="box"><font color="red"></font>
+			<tr>
+					<td class="field">用户编号：</td>
+					<td><input type="text" name="uId" id="textfield" class="text" th:value="${userinfo.uId}"/> <font color="red">*</font></td>
+				</tr>
+			<tr>
+					<td class="field">用户名称：</td>
+					<td><input type="text" name="username" class="text" id="textfield2" th:value="${userinfo.username}"/> <font color="red">*</font></td>
+			</tr>
+
+				<tr>
+					<td class="field">用户性别：</td>
+					<td>
+						<select name="sex" id="select">
+                         <option th:value="${0}">女</option>
+                         <option th:value="${1}">男</option>
+                       </select>
+					</td>
+				</tr>
+
+				<tr>
+					<td class="field">用户年龄：</td>
+					<td><input type="text" name="age" class="text" id="textfield2" th:value="${userinfo.age}"/> <font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="field">用户电话：</td>
+					<td><input type="text" name="phone" class="text" id="textfield2" th:value="${userinfo.phone}"/> <font color="red">*</font></td>
+				</tr>
+				<tr>
+					<td class="field">用户地址：</td>
+					<td><input type="text" name="address" class="text" id="textfield2" th:value="${userinfo.address}"/></td>
+				</tr>
+				<tr>
+					<td class="field">用户权限：</td>
+					<td>
+                             <span th:text="${userinfo.role == 0?'普通用户':''}"></span>
+						<span th:text="${userinfo.role == 1?'经理':''}"></span>
+					  <!--<input type="radio" name="role" id="auth" th:value="${0}" checked="checked"/>普通用户-->
+					  <!--<input type="radio" name="role" id="auth" th:value="${1}" />经理-->
+					</td>
+					<!--<td th:if="${userinfo.role == 1}">
+						<span>经理</span>
+						&lt;!&ndash;<input type="radio" name="role" id="auth" th:value="${0}" checked="checked"/>普通用户&ndash;&gt;
+						&lt;!&ndash;<input type="radio" name="role" id="auth" th:value="${1}" />经理&ndash;&gt;
+					</td>-->
+				</tr>
+			</table>
+		</div>
+		<div class="buttons">
+			<input type="submit" name="button" id="button" value="修改" class="input-button"/>
+			<a th:href="@{/user/getuserinfo2(uId=${userinfo.uId})}" class="input-button">修改密码</a>
+			<input type="hidden" th:value="${userinfo.uId}" id="uid2">
+			<input type="button" name="button" id="uid" value="删除" class="input-button"/>
+			<input type="button" name="button" id="button" onclick="window.location='user.do';" value="返回" class="input-button"/>
+		</div>
+	</form>
+</div>
+<script>
+	$(function ({
+
+				}) {
+
+	})
+</script>
+</body>
+</html>
